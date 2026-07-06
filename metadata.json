@@ -1,0 +1,6 @@
+{
+  "name": "Bengali and Arabic Alphabet Learning App",
+  "description": "An interactive educational web app to learn Bengali and Arabic alphabets, letters, words, and pronunciation with Google Text-to-Speech (TTS) and fun quizzes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

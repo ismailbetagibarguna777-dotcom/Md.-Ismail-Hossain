@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Hind Siliguri", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: "Hind Siliguri", "Inter", sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  min-height: 100vh;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 15px rgba(20, 184, 166, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0);
+  }
+}
+
+.speaking {
+  animation: pulse-ring 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.glass-effect {
+  background: rgba(22, 27, 34, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Responsive Grid Tweaks */
+@media (max-width: 380px) {
+  .char-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important;
+  }
+  .words-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #161b22;
+}
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b949e;
+}
+
+/* Footer Animations */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(8px) rotate(-1.5deg); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(48, 54, 61, 0.6); }
+  50% { border-color: rgba(20, 184, 166, 0.4); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.footer-float { animation: float-slow 5s ease-in-out infinite; }
+.footer-float-reverse { animation: float-reverse 6s ease-in-out infinite; }
+.footer-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 4s ease-in-out infinite;
+}
+.footer-border-glow { animation: border-glow 4s ease-in-out infinite; }
+.footer-spin { animation: spin-slow 30s linear infinite; }
+
+/* Logo gentle hover pulse animation */
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes logo-border-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+@keyframes logo-gentle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5), 0 0 15px 1px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.6), 0 12px 16px -4px rgba(0, 0, 0, 0.4), 0 0 20px 6px rgba(20, 184, 166, 0.5);
+  }
+}
+
+#root > div:first-child > img {
+  border: 3px solid transparent;
+  background-image: linear-gradient(#0b0f19, #0b0f19), 
+                    conic-gradient(from var(--border-angle), #14b8a6, #3b82f6, #ec4899, #10b981, #14b8a6);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5), 0 0 15px 1px rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(20, 184, 166, 0.6);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: logo-border-spin 6s linear infinite;
+}
+
+#root > div:first-child > img:hover {
+  animation: logo-border-spin 6s linear infinite, logo-gentle-pulse 1.6s ease-in-out infinite;
+}
+
+#root > div:first-child > img:active {
+  transform: scale(0.92) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2), 0 0 0 15px rgba(20, 184, 166, 0) !important;
+  transition: transform 0.08s ease-out, box-shadow 0.4s ease-out !important;
+}
+
+/* Tooltip animation on logo hover */
+.logo-tooltip {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.92);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+}
+
+#root > div:first-child > img:hover + .logo-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================================================
+   EXTRAORDINARY HOVER & SOUND WAVE EFFECTS FOR VOCABULARY STORE (শব্দ ভান্ডার)
+   ========================================================================== */
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(150%) skewX(-25deg);
+  }
+}
+
+@keyframes audio-bar-play-1 {
+  0%, 100% { height: 6px; }
+  50% { height: 16px; }
+}
+
+@keyframes audio-bar-play-2 {
+  0%, 100% { height: 16px; }
+  50% { height: 4px; }
+}
+
+@keyframes audio-bar-play-3 {
+  0%, 100% { height: 10px; }
+  50% { height: 18px; }
+}
+
+@keyframes float-sparkle {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-8px) scale(1.3) rotate(15deg);
+    opacity: 0.95;
+    color: #f59e0b; /* Amber spark */
+  }
+}
+
+@keyframes speaker-ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgba(20, 184, 166, 0);
+  }
+}
+
+/* Audio Wave Animations */
+.animate-audio-bar-1 {
+  animation: audio-bar-play-1 0.7s ease-in-out infinite;
+}
+
+.animate-audio-bar-2 {
+  animation: audio-bar-play-2 0.5s ease-in-out infinite 0.1s;
+}
+
+.animate-audio-bar-3 {
+  animation: audio-bar-play-3 0.8s ease-in-out infinite 0.2s;
+}
+
+/* Sparkle stars on hover */
+.hover-sparkle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.group:hover .hover-sparkle {
+  opacity: 1;
+  animation: float-sparkle 1.8s ease-in-out infinite;
+}
+
+/* Glow halo back layer */
+.vocab-card-glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle at center, rgba(20, 184, 166, 0.4) 0%, rgba(139, 92, 246, 0.2) 40%, transparent 70%);
+  filter: blur(20px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .vocab-card-glow {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* Shimmer sweep glass layer */
+.vocab-shimmer-sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0.08) 70%,
+    transparent
+  );
+  transform: translateX(-150%) skewX(-25deg);
+  pointer-events: none;
+}
+
+.group:hover .vocab-shimmer-sweep {
+  animation: shimmer-sweep 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Animated interactive speaker button */
+.hover-speaker-ripple {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .hover-speaker-ripple {
+  transform: scale(1.25) rotate(-5deg);
+  color: #14b8a6; /* teal-500 */
+  animation: speaker-ripple 1s infinite;
+}
+
+/* Elastic Word Scale & Text Shadow Glow */
+.vocab-word-text {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.group:hover .vocab-word-text {
+  transform: scale(1.14) translateY(-2px);
+  color: #2dd4bf !important; /* bright teal */
+  text-shadow: 
+    0 0 10px rgba(45, 212, 191, 0.5),
+    0 0 20px rgba(45, 212, 191, 0.25),
+    0 0 30px rgba(45, 212, 191, 0.15);
+}
+
+/* Custom card container styles */
+.vocab-glass-card {
+  z-index: 10;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.5), 
+    0 8px 10px -6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.07);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* Custom subtle glowing border transition on hover */
+.VocabularyStore .word-card {
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.VocabularyStore .word-card:hover {
+  border-color: rgba(45, 212, 191, 0.8) !important;
+  box-shadow: 
+    0 12px 30px -5px rgba(0, 0, 0, 0.55), 
+    0 8px 12px -6px rgba(0, 0, 0, 0.55),
+    0 0 16px 2px rgba(45, 212, 191, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Pulsing glowing border transition when TTS is active */
+.VocabularyStore .word-card.is-reading {
+  border-color: rgba(45, 212, 191, 0.95) !important;
+  animation: card-border-pulse 1.8s infinite ease-in-out !important;
+}
+
+@keyframes card-border-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 12px 30px -5px rgba(0, 0, 0, 0.55), 
+      0 0 12px 1px rgba(45, 212, 191, 0.25),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow: 
+      0 12px 30px -5px rgba(0, 0, 0, 0.55), 
+      0 0 24px 6px rgba(45, 212, 191, 0.55),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Accessibility Global Font Size Scaling Rules */
+html.font-size-small {
+  font-size: 14px;
+}
+html.font-size-medium {
+  font-size: 16px; /* standard default */
+}
+html.font-size-large {
+  font-size: 19px; /* larger, highly readable for kids */
+}
+
+/* Ensure body inherits the scaled root font size */
+body {
+  font-size: 1rem;
+}
+
+@keyframes gold-shimmer {
+  0% {
+    left: -150%;
+  }
+  50% {
+    left: 150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.gold-shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 215, 0, 0) 0%,
+    rgba(255, 215, 0, 0.15) 20%,
+    rgba(255, 215, 0, 0.45) 50%,
+    rgba(255, 215, 0, 0.15) 80%,
+    rgba(255, 215, 0, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: gold-shimmer 4s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 5;
+}
+
+
+
+

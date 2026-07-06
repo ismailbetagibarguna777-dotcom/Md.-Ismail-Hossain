@@ -1,11 +1,91 @@
-<div align="center">
+# 🇧🇩 সোনামণিদের বাংলা শেখার ম্যাজিক বক্স (Bengali Kids Vocabulary Fun)
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+এটি একটি ইন্টারেক্টিভ এবং দারুণ আকর্ষণীয় ওয়েব অ্যাপ্লিকেশন, যার মাধ্যমে ছোট সোনামণিরা খুব সহজে এবং আনন্দের সাথে নতুন নতুন বাংলা শব্দ ও তাদের ব্যবহার শিখতে পারবে। এটি সম্পূর্ণ রেসপনসিভ এবং আধুনিক ডিজাইন সমৃদ্ধ।
 
-  <h1>Built with AI Studio</h2>
+---
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 🚀 ফিচারসমূহ (Features)
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+*   **ইন্টারেক্টিভ শব্দ ভান্ডার:** আকর্ষনীয় ফ্লাশকার্ড ও অ্যানিমেশনের মাধ্যমে শব্দ শিক্ষা।
+*   **Gemini AI চালিত বাক্য তৈরি:** প্রতিটি শব্দের জন্য কৃত্রিম বুদ্ধিমত্তা দিয়ে শিশুদের উপযোগী সহজ ও মিষ্টি বাক্য ও ব্যাখ্যা জেনারেট করা হয়।
+*   **Netlify Serverless Functions:** ব্যাকএন্ড এপিআই সিকিউর রাখার জন্য Netlify-এর সার্ভারলেস ফাংশন ব্যবহার করা হয়েছে।
+*   **সম্পূর্ণ রেসপনসিভ ডিজাইন:** মোবাইল, ট্যাবলেট এবং ডেক্সটপসহ যেকোনো ডিভাইসে নিখুঁতভাবে চলবে।
 
-</div>
+---
+
+## 🛠️ লোকাল সেটআপ নির্দেশিকা (Local Development Setup)
+
+লোকাল কম্পিউটারে প্রজেক্টটি রান করার জন্য নিচের ধাপগুলো অনুসরণ করুন:
+
+১. **প্রজেক্টটি ডাউনলোড বা ক্লোন করুন:**
+   ```bash
+   git clone <your-github-repo-url>
+   cd <project-folder-name>
+   ```
+
+২. **ডিপেন্ডেন্সি ইন্সটল করুন:**
+   ```bash
+   npm install
+   ```
+
+৩. **এনভায়রনমেন্ট ভেরিয়েবল সেটআপ করুন:**
+   রুট ডিরেক্টরি বা ফোল্ডারে `.env` নামে একটি ফাইল তৈরি করুন এবং আপনার Gemini API Key যুক্ত করুন:
+   ```env
+   GEMINI_API_KEY=আপনার_জেমিনি_এপিআই_কি
+   ```
+
+৪. **ডেভেলপমেন্ট সার্ভার চালু করুন:**
+   ```bash
+   npm run dev
+   ```
+   এরপর ব্রাউজারে `http://localhost:3000` লিংকে প্রবেশ করুন।
+
+---
+
+## ☁️ Netlify তে ডিপ্লয় করার গাইডলাইন (Deploying to Netlify)
+
+প্রজেক্টটি GitHub-এ পুশ করার পর Netlify-তে ডিপ্লয় করা একদম সহজ!
+
+### ধাপ ১: GitHub-এ প্রজেক্ট আপলোড করা
+১. আপনার GitHub অ্যাকাউন্টে একটি নতুন **Public/Private Repository** তৈরি করুন।
+২. আপনার টার্মিনালে নিচের কমান্ডগুলো রান করে কোড পুশ করুন:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin <আপনার-GitHub-রিমোট-ইউআরএল>
+   git push -u origin main
+   ```
+
+### ধাপ ২: Netlify-তে প্রজেক্ট কানেক্ট করা
+১. [Netlify](https://www.netlify.com/)-এ লগইন করুন।
+২. **Add new site** > **Import an existing project** অপশনে যান।
+৩. **GitHub** সিলেক্ট করুন এবং আপনার এই প্রজেক্টের রিপোজিটরিটি সিলেক্ট করুন।
+৪. বিল্ড সেটিংস নিচের মতো অটোমেটিক সেট হয়ে যাবে (আমাদের `netlify.toml` ফাইলে এটি কনফিগার করা আছে):
+   * **Build command:** `npm run build`
+   * **Publish directory:** `dist`
+৫. **Deploy site**-এ ক্লিক করুন।
+
+### ধাপ ৩: Environment Variables অ্যাড করা (গুরুত্বপূর্ণ ⚠️)
+আপনার জেমিনি এআই ফিচারটি সচল করার জন্য Netlify-তে API Key সেট করতে হবে:
+১. Netlify ড্যাশবোর্ডে আপনার সাইটে যান।
+২. **Site configuration** > **Environment variables** মেন্যুতে যান।
+৩. **Add a variable** > **Import from .env** অথবা **Add a single variable**-এ ক্লিক করুন।
+৪. নিচের মতো তথ্য দিয়ে ভেরিয়েবলটি সেভ করুন:
+
+| Field | Value | বর্ণনা |
+| :--- | :--- | :--- |
+| **Key** | `GEMINI_API_KEY` | এটি হুবহু এই বড় হাতের অক্ষরেই লিখবেন। |
+| **Value** | `AIzaSy...` | [Google AI Studio](https://aistudio.google.com/) থেকে পাওয়া আপনার গোপন এপিআই কি-টি এখানে বসাবেন। |
+
+৫. ভেরিয়েবল সেভ করার পর একবার **Trigger deploy** > **Clear cache and deploy site** দিন যাতে নতুন কী-টি কার্যকর হয়।
+
+---
+
+## 📁 প্রজেক্ট স্ট্রাকচার (Project Structure)
+
+*   `src/App.tsx` - মূল অ্যাপ্লিকেশন লেআউট এবং ইউজার ইন্টারফেস।
+*   `netlify/functions/generate-sentence.ts` - ব্যাকএন্ড সার্ভারলেস ফাংশন যা জেমিনি এপিআই-এর সাথে নিরাপদভাবে যোগাযোগ করে।
+*   `netlify.toml` - নেটলিফাই বিল্ড এবং রিডাইরেক্ট কনফিগারেশন ফাইল।
+*   `vite.config.ts` - ভাইট (Vite) কনফিগারেশন।
